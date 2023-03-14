@@ -1,6 +1,6 @@
 option('openblas_include',
        type: 'array',
-       value: ['/usr/include/openblas/'],
+       value: ['/usr/include/openblas/', '/opt/OpenBLAS/include'],
        description: 'Paths to openblas include directories')
 
 option('opencl_include',
@@ -65,22 +65,22 @@ option('ispc_native_only',
 
 option('cudnn',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable cuDNN backend')
 
 option('plain_cuda',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable CUDA backend')
 
 option('opencl',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable OpenCL backend')
 
 option('dx',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable DirectX12 backend')
 
 option('tensorflow',
@@ -100,7 +100,7 @@ option('openblas',
 
 option('mkl',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable MKL BLAS support')
 
 option('dnnl',
@@ -110,7 +110,7 @@ option('dnnl',
 
 option('accelerate',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Enable Accelerate BLAS support')
 
 option('metal',
@@ -135,7 +135,7 @@ option('popcnt',
 
 option('f16c',
        type: 'boolean',
-       value: true,
+       value: false,
        description: 'Use natice fp16 conversion instructions')
 
 option('pext',

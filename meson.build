@@ -259,9 +259,10 @@ if get_option('build_backends')
   dnnl_lib = cc.find_library('dnnl', dirs: dnnl_libdirs, required: false)
 
   openblas_libdirs = get_option('openblas_libdirs')
+  message(openblas_libdirs)
   openblas_lib = cc.find_library('openblas.dll', dirs: openblas_libdirs, required: false)
   if not openblas_lib.found()
-    openblas_lib = cc.find_library('openblas', dirs: openblas_libdirs, required: false)
+    openblas_lib = cc.find_library('openblas', dirs: openblas_libdirs, required: false, static: true)
   endif
 
   if get_option('blas')
