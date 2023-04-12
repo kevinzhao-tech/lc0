@@ -20,7 +20,7 @@
 #include "blas.h"
 #include "convolution1_sgemm.h"
 
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 //#include <unsupported/Eigen/FFT>
 
 
