@@ -16,10 +16,13 @@
  along with Leela Chess.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "neural/blas/convolution1.h"
-#include "neural/blas/blas.h"
+#include "convolution1.h"
+#include "blas.h"
+#include "convolution1_sgemm.h"
 
 #include <Eigen/Dense>
+//#include <unsupported/Eigen/FFT>
+
 
 namespace lczero {
 template <typename T>
@@ -56,20 +59,18 @@ void Convolution1<false>::Forward(const size_t batch_size,
 
     const float* batch_input = input + i * kSquares * input_channels;
     float* batch_output = output + i * kSquares * output_channels;
-    cblas_sgemm(CblasRowMajor,         // Row major formar
-                CblasNoTrans,          // A not transposed
-                CblasNoTrans,          // B not transposed
-                (int)output_channels,  // M
-                kSquares,              // N
-                (int)input_channels,   // K
-                1.0f,                  // Alpha
-                weights,               // A
-                (int)input_channels,   // lda, leading rank of A
-                batch_input,           // B
-                kSquares,              // ldb, leading rank of B
-                0.0f,                  // beta
-                batch_output,          // C
-                kSquares);             // ldc, leading rank of B
+new_sgemm((int)output_channels,  // M
+          static_cast<int>(kSquares),              // N
+          (int)input_channels,   // K
+          static_cast<float>(1.0f),                  // Alpha
+          weights,               // A
+          (int)input_channels,   // lda, leading rank of A
+          batch_input,           // B
+          kSquares,              // ldb, leading rank of B
+          0.0f,                  // beta
+          batch_output,          // C
+          kSquares);             // ldc, leading rank of B
+
   }
 }
 #endif

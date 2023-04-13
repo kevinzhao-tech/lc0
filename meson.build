@@ -362,10 +362,13 @@ if get_option('build_backends')
 
     blas_files = [
     'src/neural/blas/convolution1.cc',
+    'src/neural/blas/convolution1_sgemm.c',
     'src/neural/blas/fully_connected_layer.cc',
     'src/neural/blas/se_unit.cc',
     'src/neural/blas/network_blas.cc',
-    'src/neural/blas/winograd_convolution3.cc'
+    'src/neural/blas/winograd_convolution3.cc',
+    'src/neural/blas/sa_mm.c',
+    'src/neural/blas/cnn.c'
     ]
 
     shared_files = [
